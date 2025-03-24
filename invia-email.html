@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Invia Email</title>
+    <script>
+        function sendEmail() {
+            var subject = document.getElementById("subject").value;
+            var body = document.getElementById("message").value;
+            var email = "hdaslcaserta@soluzionimediacom.com";
+            var mailtoLink = `mailto:${email}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+            
+            window.location.href = mailtoLink;
+        }
+    </script>
+</head>
+<body>
+    <h2>Invia un'email</h2>
+    <label for="subject">Seleziona l'oggetto:</label>
+    <select id="subject">
+        <option value="Sistema Valutazioni Performance">Sistema Valutazioni Performance</option>
+        <option value="Cruscotto di Monitoraggio">Cruscotto di Monitoraggio</option>
+    </select>
+    <br><br>
+    <label for="message">Messaggio:</label>
+    <textarea id="message" rows="4" cols="50"></textarea>
+    <br><br>
+    <button onclick="sendEmail()">Invia Email</button>
+</body>
+</html>
