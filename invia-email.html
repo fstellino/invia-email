@@ -7,73 +7,92 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            margin: 40px;
+            background-color: #f4f4f4;
+            text-align: center;
+            padding: 20px;
         }
-        label, input, select, textarea, button {
-            display: block;
-            margin-bottom: 10px;
-            width: 100%;
+        .container {
+            background: #15317E;
+            color: white;
+            max-width: 400px;
+            margin: auto;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
         }
-        input, select, textarea {
-            padding: 8px;
+        label {
+            text-align: left; /* Allinea il testo a sinistra */
+            width: 100%; /* Rendi le etichette a larghezza completa */
+            display: block; /* Le etichette sono ora blocchi */
+            margin-bottom: 5px;
+        }
+        select, input, textarea {
+            width: 80%; /* Ridotto la larghezza dei campi */
+            margin-top: 10px;
+            margin-left: auto; /* Centrare a sinistra */
+            margin-right: auto; /* Centrare a destra */
+            padding: 8px 10px; /* Ridotto padding per dimensioni più piccole */
+            border: none;
+            border-radius: 5px;
             font-size: 16px;
         }
         button {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px;
+            background: white; /* Bottone bianco */
+            color: #15317E; /* Testo blu */
+            border: 2px solid #15317E; /* Bordo blu */
+            padding: 12px 15px 12px 12px; /* Padding con maggiore spazio a destra */
+            width: 100%; /* Ridotto anche la larghezza del bottone */
+            font-size: 16px;
+            border-radius: 5px;
+            margin-top: 15px;
             cursor: pointer;
+            margin-left: auto;
+            margin-right: auto;
         }
         button:hover {
-            background-color: #0056b3;
+            background: #f1f1f1; /* Colore grigio chiaro al passaggio del mouse */
+        }
+        img {
+            max-width: 100px;
+            margin-bottom: 15px;
         }
     </style>
 </head>
 <body>
-
-    <h2>Modulo di Invio Email</h2>
-
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome" placeholder="Inserisci il tuo nome" required>
-
-    <label for="cognome">Cognome:</label>
-    <input type="text" id="cognome" placeholder="Inserisci il tuo cognome" required>
-
-    <label for="ruolo">Ruolo:</label>
-    <input type="text" id="ruolo" placeholder="Inserisci il tuo ruolo (es. Tecnico, Manager)" required>
-
-    <label for="categoria">Seleziona categoria:</label>
-    <select id="categoria">
-        <option value="Sistema Valutazioni Performance">Sistema Valutazioni Performance</option>
-        <option value="Cruscotto di Monitoraggio">Cruscotto di Monitoraggio</option>
-    </select>
-
-    <label for="messaggio">Messaggio:</label>
-    <textarea id="messaggio" placeholder="Scrivi il tuo messaggio qui..." rows="5"></textarea>
-
-    <button onclick="inviaEmail()">Invia Email</button>
+    <div class="container">
+        <img src="asl-caserta.jpeg" alt="Logo ASL Caserta e PNRR">
+        <h2>Data analytics, Controllo di Gestione e Valutazione delle Performance
+            Servizio HELP Desk</h2>
+       <h4> <label for="nome">Nome e Cognome:</label>
+        <input type="text" id="nome" placeholder="Inserisca il suo Nome e Cognome"> </h4>
+        
+       <h4> <label for="ruolo">Ruolo:</label>
+        <input type="text" id="ruolo" placeholder="Inserisca il suo ruolo"> </h4>
+        
+        <h4> <label for="tipo">Tipo di richiesta:</label>
+        <select id="tipo">
+            <option value="Sistema Valutazioni performance">Sistema Valutazioni Performance</option>
+            <option value="Cruscotto di monitoraggio">Cruscotto di Monitoraggio</option>
+        </select> </h4>
+    
+        <h4> <label for="messaggio">Messaggio:</label>
+        <textarea id="messaggio" rows="4" placeholder="Come possiamo aiutarla? Inserisca anche un recapito telefonico."></textarea> </h4>
+        
+        <button onclick="inviaEmail()">Invia Email</button>
+    </div>
 
     <script>
         function inviaEmail() {
-            let nome = document.getElementById("nome").value.trim();
-            let cognome = document.getElementById("cognome").value.trim();
-            let ruolo = document.getElementById("ruolo").value.trim();
-            let categoria = document.getElementById("categoria").value;
-            let messaggio = document.getElementById("messaggio").value.trim();
-
-            if (!nome || !cognome || !ruolo) {
-                alert("Compila tutti i campi obbligatori (Nome, Cognome, Ruolo).");
-                return;
-            }
-
-            let oggetto = `${categoria} - ${nome} ${cognome} (${ruolo})`;
-            let email = "hdaslcaserta@soluzionimediacom.com";
-            let mailtoLink = `mailto:${email}?subject=${encodeURIComponent(oggetto)}&body=${encodeURIComponent(messaggio)}`;
-
-            window.location.href = mailtoLink;
+            const nome = document.getElementById('nome').value;
+            const ruolo = document.getElementById('ruolo').value;
+            const tipo = document.getElementById('tipo').value;
+            const messaggio = document.getElementById('messaggio').value;
+            
+            const subject = encodeURIComponent(`${nome} - ${ruolo} - ${tipo}`);
+            const body = encodeURIComponent(messaggio);
+            
+            window.location.href = `mailto:hdaslcaserta@soluzionimediacom.com?subject=${subject}&body=${body}`;
         }
     </script>
-
 </body>
 </html>
